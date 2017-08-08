@@ -1,0 +1,24 @@
+{
+  "name": "exercism-uniconfig",
+  "version": "0.0.1",
+  "description": "Multiplexer for Exercism track configs.",
+  "main": "index.js",
+  "scripts": {
+    "bin": "./bin/exercism-uniconfig",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tleen/exercism-uniconfig.git"
+  },
+  "author": "Tom Leen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tleen/exercism-uniconfig/issues"
+  },
+  "homepage": "https://github.com/tleen/exercism-uniconfig#readme",
+  "dependencies": {
+    "async": "2.5.0",
+    "node-fetch": "1.7.2"
+  }
+}
