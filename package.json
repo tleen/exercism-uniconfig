@@ -1,6 +1,6 @@
 {
   "name": "exercism-uniconfig",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Multiplexer for Exercism track configs.",
   "main": "index.js",
   "scripts": {
