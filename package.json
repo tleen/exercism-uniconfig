@@ -4,8 +4,10 @@
   "description": "Multiplexer for Exercism track configs.",
   "main": "index.js",
   "scripts": {
-    "bin": "./bin/exercism-uniconfig",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "exercism-uniconfig": "./bin/exercism-uniconfig"
   },
   "repository": {
     "type": "git",
