@@ -1,10 +1,8 @@
 let async = require('async'),
     fetch = require('node-fetch');
 
-// 1. fetch list of tracks
-// https://raw.githubusercontent.com/exercism/exercism.io/master/test/fixtures/tracks.json
-// xx - is there a better list of tracks?
-
+// Fetch list of tracks and run through a Promise transformation chain
+// xx - is there a better way to get a list of current tracks?
 fetch('https://raw.githubusercontent.com/exercism/exercism.io/master/test/fixtures/tracks.json')
   .then( res => res.json()) // transform fetch response into json
   .then( res => res.tracks) // dig down into the track data
@@ -19,12 +17,12 @@ fetch('https://raw.githubusercontent.com/exercism/exercism.io/master/test/fixtur
   .then( urls => { // transform that map of slug => url to slug => track config
     async.mapValuesLimit(
       urls,
-      2, // only access two of the githubusercontent urls at once: be nice.
+      2, // limit simultaneous access to the githubusercontent server: be nice
       (url, slug, callback) => {
-        // get the config for each track
+        // another Promise chain
         fetch(url)
           .then(res => res.json())
-          .then(res => callback(null, res))
+          .then(res => callback(null, res)) // send json back to the async map function
           .catch( (err) => {
             // don't stop processing all tracks because of an error
             // keep going, set config empty
@@ -48,9 +46,7 @@ fetch('https://raw.githubusercontent.com/exercism/exercism.io/master/test/fixtur
           let trackconfig = configs[slug];
           if(trackconfig !== '') uniconfig.tracks[slug] = configs[slug]
         }
-
-        // xx - write out json of uniconfig to std out
-//        console.log(uniconfig);
+        // writing new uniconfig to stdout, pretty
         process.stdout.write(JSON.stringify(uniconfig, null, 2));
       });
   })
